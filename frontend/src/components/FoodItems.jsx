@@ -22,9 +22,9 @@ const FoodItems = ({ _id, name, image, price, description, category }) => {
           />
         ) : (
           <div className="flex justify-end items-center gap-2">
-            <CiCircleMinus className="text-red-500 text-4xl " onClick={() => setItemCount((prev) => prev - 1)} />
+            <CiCircleMinus className="text-red-500 bg-white  rounded-full border-2 border-red-600 text-4xl " onClick={() => setItemCount((prev) => prev - 1)} />
             <p>{itemCount}</p>
-            <IoIosAddCircleOutline className="text-green-500 text-4xl" onClick={() => setItemCount((prev) => prev + 1)}/>
+            <IoIosAddCircleOutline className="text-green-500 bg-white  rounded-full border-2 border-green-600 text-4xl" onClick={() => setItemCount((prev) => prev + 1)}/>
           </div>
         )}
         </div>
