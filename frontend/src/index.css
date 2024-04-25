@@ -9,6 +9,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Outfit", sans-serif;
+  scroll-behavior:smooth;
 }
 
 @keyframes fadeIn {
@@ -25,5 +26,7 @@
 }
 .food-item{
   animation: fadeIn 0.5s;
-  
+}
+.login-popup-form{
+  animation:fadeIn 0.5s;
 }
