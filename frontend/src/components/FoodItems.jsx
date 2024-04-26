@@ -14,7 +14,7 @@ const FoodItems = ({ id, name, image, price, description }) => {
         <div className="absolute right-2 bottom-2">
           {!cartItem[id] ? (
             <IoIosAddCircleOutline
-              className="flex justify-end items-center text-4xl max-md:text-2xl gap-2 text-green-500 bg-white rounded-full border-2 border-green-600"
+              className="flex cursor-pointer justify-end items-center text-4xl max-md:text-2xl gap-2 text-green-500 bg-white rounded-full border-2 border-green-600"
               onClick={() => addToCart(id)}
             />
           ) : (

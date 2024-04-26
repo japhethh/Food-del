@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
       </div>
       <hr className="bg-gray-400 h-[3px]  flex justify-center items-center my-8 w-full" />
-      <p>Copy right 2024 ©️ japheth. All Right Reserved.</p>
+      <p className="text-center ">Copy right 2024 ©️ japheth. All Right Reserved.</p>
     </div>
   );
 };

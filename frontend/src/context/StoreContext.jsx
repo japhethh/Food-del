@@ -6,7 +6,9 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItem, setCartItem] = useState({});
 
-
+useEffect(() => {
+  console.log(cartItem);
+})
   // addToCart
   const addToCart = (itemId) => {
     setCartItem(prev => ({

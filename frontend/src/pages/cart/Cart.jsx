@@ -43,12 +43,12 @@ const Cart = () => {
           <hr />
           <div className="cart-total-details flex py-2 justify-between items-center text-gray-500">
             <p>Delivery Fee</p>
-            <p>{2}</p>
+            <p>{getTotalFromAmount() === 0 ? 0 : 2}</p>
           </div>
           <hr />
           <div className="cart-total-details flex py-2 justify-between items-center text-gray-700">
             <b>Total</b>
-            <b>{0}</b>
+            <b>{getTotalFromAmount() === 0 ? 0 : getTotalFromAmount() + 2}</b>
           </div>
         </div>
         <hr className="my-5 "/>
