@@ -7,6 +7,7 @@ import Cart from './pages/cart/Cart'
 import Error from './pages/error/Error'
 import LoginPopup from "./components/LoginPopup"
 import Placeholder from './pages/placeholder/Placeholder'
+// import Example from './pages/Example'
 const App = () => {
   const [showLogin,setShowLogin] = useState(false);
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="*" element={<Error/>}/>
       </Routes>
       <Footer/>
+      {/* <Example /> */}
     </div>
     </>
   );
