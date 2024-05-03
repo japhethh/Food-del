@@ -32,7 +32,7 @@ const List = ({url}) => {
     <div className="list flex flex-col p-10    w-full ">
       <p>All Food List</p>
       <div className="list-table">
-        <div className="list-table-format title  grid grid-cols-5 gap-2 py-2 px-3 border-[1px] border-gray-400 text-sm max-md:hidden text-gray-700">
+        <div className="list-table-format title  grid grid-cols-5 gap-2 py-2 px-3 border-[1px] border-gray-400 text-sm max-md:hidden text-gray-800">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
