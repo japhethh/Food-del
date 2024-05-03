@@ -15,6 +15,7 @@ const ExploreMenu = ({category, setCategory}) => {
             <img className={`${category === item.menu_name ? "border-4 border-orange-500 p-1" : ""} w-[7vw] h-[7vh] min-w-[80px] min-h-[80px] object-cover rounded-full`} src={item.menu_image} alt={item.menu_name} />
             <p className="mt-2 text-center">{item.menu_name}</p>
 
+
           </div>
         ))}
       </div>

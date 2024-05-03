@@ -14,9 +14,9 @@ app.use(cors());
 connectDB();
 
 // api endpoints 
-//My, this is the starting path
-app.use("/api/food",foodRouter);
-app.use("/images",express.static('uploads'));
+  //My, this is the starting path
+  app.use("/api/food",foodRouter);
+  app.use("/images",express.static("uploads"));
 
 app.get("/", (req, res) => {
   res.send("<h2 className='text-orange-500'>API Workingf</h2>");
