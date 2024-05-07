@@ -14,7 +14,7 @@ const App = () => {
     <>
     {showLogin ? <LoginPopup  setShowLogin={setShowLogin}/> : <></> } 
     <div className="max-w-[1200px] mx-auto px-4">
-      <Navbar   setShowLogin={setShowLogin}/>
+      <Navbar setShowLogin={setShowLogin}/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/cart" element={<Cart/>}/>

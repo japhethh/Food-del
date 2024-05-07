@@ -1,10 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {StoreContext} from '../context/StoreContext'
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { IoLogOutOutline } from "react-icons/io5";
+
+
+
 const Navbar = ({setShowLogin}) => {  
+  const navigate = useNavigate();
   const [menu, setMenu] = useState("home");
-  const {getTotalFromAmount} = useContext(StoreContext);
+  const {getTotalFromAmount,token, setToken} = useContext(StoreContext);
+
+  const logout = () => {
+    localStorage.removeItem("token")
+    setToken("")
+    navigate("/")
+  }
   return (
     <div className="flex justify-between items-center py-5  ">
       <Link to="/"><img
@@ -57,9 +69,20 @@ const Navbar = ({setShowLogin}) => {
           <div className={`${getTotalFromAmount() === 0 ? "" : "absolute h-2 w-2 bg-orange-500 rounded-full top-[-6px] right-[-5px]"}`}></div>
         </div>
 
-        <button className="bg-transparent border-[1px] md:text-lg text-sm py-1 px-2  md:py-2 md:px-3 text-[#49557e]   rounded-full cursor-pointer hover:bg-[#fff4f2] transition duration-150 ease-in-out" onClick={() => setShowLogin(true)}>
+        {!token ? (<button className="bg-transparent border-[1px] md:text-lg text-sm py-1 px-2  md:py-2 md:px-3 text-[#49557e]   rounded-full cursor-pointer hover:bg-[#fff4f2] transition duration-150 ease-in-out" onClick={() => setShowLogin(true)}>
           Sign in
-        </button>
+        </button>) : (
+       <div className="navbar-profile relative group">
+       <img className="w-5" src={assets.profile_icon} alt="" />
+       <ul className="nav-profile-dropdown absolute right-0 z-10 hidden group-hover:flex flex-col  gap-4 bg-white border-[1px] border-orange-500 shadow-md px-3 py-5 rounded-sm outline-white">
+         <li className="flex items-center justify-start gap-1 cursor-pointer hover:text-orange-500"><HiOutlineShoppingBag /><p>Orders</p></li>
+         <hr className="h-[1px] bg-blue-500" />
+         <li onClick={logout} className="flex items-center justify-start gap-1 cursor-pointer hover:text-orange-500"><IoLogOutOutline /><p>Logout</p></li>
+       </ul>
+     </div>
+        ) }
+
+        
       </div>
     </div>
   );
