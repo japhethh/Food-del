@@ -5,12 +5,12 @@ import { CiCircleMinus } from "react-icons/ci";
 
 const FoodItems = ({ id, name, image, price, description }) => {
   
-  const { cartItem, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItem, addToCart, removeFromCart,URL } = useContext(StoreContext);
 
   return (
     <div className="food-item w-full shadow-md py-2 px-2">
       <div className="relative">
-        <img className="rounded-tr-xl rounded-tl-xl w-full" src={image} alt="" />
+        <img className="rounded-tr-xl rounded-tl-xl w-full" src={URL+"/images/"+image} alt="" />
         <div className="absolute right-2 bottom-2">
           {!cartItem[id] ? (
             <IoIosAddCircleOutline

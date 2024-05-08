@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 
 const Cart = () => {
-  const { cartItem, food_list, removeFromCart,getTotalFromAmount } = useContext(StoreContext);
+  const { cartItem, food_list, removeFromCart,getTotalFromAmount,URL } = useContext(StoreContext);
   return (
     <div>
       <div className="grid grid-cols-6 items-center text-gray-600 gap-2 ">
@@ -20,7 +20,7 @@ const Cart = () => {
           return (
             <div>
               <div className="cart-item-title cart-items-item grid grid-cols-6 py-1  items-center text-black gap-2">
-                <img className="w-[50px]" src={item.image} alt="" />
+                <img className="w-[50px]" src={URL+"/images/"+item.image} alt="" />
                 <p>{item.name}</p>
                 <p>${item.price}</p>
                 <p>{cartItem[item._id]}</p>

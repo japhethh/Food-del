@@ -1,50 +1,62 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { food_list } from '../assets/assets';
+import React, { createContext, useEffect, useState } from "react";
+import axios from 'axios';
+
+// import { food_list } from '../assets/assets';
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItem, setCartItem] = useState({});
   const URL = "http://localhost:4000";
-  const [token,setToken] = useState("");
+  const [token, setToken] = useState("");
+  const [food_list, setFood_list] = useState([]);
 
-useEffect(() => {
-    if(localStorage.getItem("token")){
-      setToken(localStorage.getItem("token"))
+  useEffect(() => {
+    async function loadData() {
+      await fetchFoodList();
+      if(localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
     }
-},[])
+    loadData();
+  }, []);
+
+  const fetchFoodList = async () => {
+    const response = await axios.get(`${URL}/api/food/list`);
+    setFood_list(response.data.data);
+  };
+  
   // addToCart
   const addToCart = (itemId) => {
-    setCartItem(prev => ({
-      ...prev,[itemId]: (prev[itemId] || 0) + 1
+    setCartItem((prev) => ({
+      ...prev,
+      [itemId]: (prev[itemId] || 0) + 1,
     }));
   };
 
   const removeFromCart = (itemId) => {
-    if ( cartItem[itemId]  > 1 ) {
-        setCartItem(prev => ({
-          ...prev,[itemId]:prev[itemId]-1
-        }))
-
-    }else{
-      const updatedCart = {...cartItem};
-      delete updatedCart[itemId]
-      setCartItem(updatedCart)
+    if (cartItem[itemId] > 1) {
+      setCartItem((prev) => ({
+        ...prev,
+        [itemId]: prev[itemId] - 1,
+      }));
+    } else {
+      const updatedCart = { ...cartItem };
+      delete updatedCart[itemId];
+      setCartItem(updatedCart);
     }
-  }
+  };
 
+  const getTotalFromAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItem) {
+      let findItem = food_list.find((product) => product._id === item);
+      // the cartItem[item] is like this value of the id 1
+      totalAmount += findItem.price * cartItem[item];
+    }
+    return totalAmount;
+  };
   
-    const getTotalFromAmount = () => {
-      let totalAmount = 0;
-      for(const item in cartItem){ 
-        let findItem = food_list.find((product) => product._id === item)
-        // the cartItem[item] is like this value of the id 1 
-        totalAmount += findItem.price * cartItem[item]
-      }
-      return totalAmount
-    }
-
-
   const contextValue = {
     food_list,
     cartItem,
@@ -54,7 +66,7 @@ useEffect(() => {
     getTotalFromAmount,
     URL,
     token,
-    setToken
+    setToken,
   };
 
   return (

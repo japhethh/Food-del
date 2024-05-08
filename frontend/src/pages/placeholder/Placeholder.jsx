@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 const Placeholder = () => {
-  const { getTotalFromAmount } = useContext(StoreContext);
+  const { getTotalFromAmount,URL } = useContext(StoreContext);
   return (
     <div>
       <form className="place-order flex items-start justify-between mt-24" action="">

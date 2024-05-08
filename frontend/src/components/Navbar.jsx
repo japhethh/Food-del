@@ -10,7 +10,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 const Navbar = ({setShowLogin}) => {  
   const navigate = useNavigate();
   const [menu, setMenu] = useState("home");
-  const {getTotalFromAmount,token, setToken} = useContext(StoreContext);
+  const {getTotalFromAmount,token, setToken,URL} = useContext(StoreContext);
 
   const logout = () => {
     localStorage.removeItem("token")
