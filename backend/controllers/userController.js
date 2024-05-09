@@ -29,7 +29,7 @@ const createToken = (id) => {
     return jwt.sign({id},process.env.JWT_SECRET) 
 }
 
-//Registero
+//Register
 const registerUser = async (req, res) => {
   const { name, password, email } = req.body;
 
@@ -40,6 +40,7 @@ const registerUser = async (req, res) => {
       return res.json({ success: false, message: "User already exists" });
     }
     // validating email format && strong password
+
     if (!validator.isEmail(email)) {
       return res.json({
         success: false,
