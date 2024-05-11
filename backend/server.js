@@ -20,8 +20,8 @@ connectDB();
 //My, this is the starting path
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
-app.use("/api/user",userRouter)
-app.use("/api/cart",cartRouter)
+app.use("/api/user",userRouter);
+app.use("/api/cart",cartRouter);
 
 app.get("/", (req, res) => {
   res.send("<h2 className='text-orange-500'>API Workingf</h2>");

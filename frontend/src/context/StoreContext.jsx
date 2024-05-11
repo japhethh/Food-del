@@ -16,35 +16,55 @@ const StoreContextProvider = (props) => {
       await fetchFoodList();
       if(localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token"));
       }
     }
     loadData();
   }, []);
 
+  const loadCartData = async (token) => {
+    const response = await axios.post(`${URL}/api/cart/get`,{},{headers:{token}});
+    setCartItem(response.data.cartData);
+  }
+  
   const fetchFoodList = async () => {
     const response = await axios.get(`${URL}/api/food/list`);
     setFood_list(response.data.data);
   };
+
+ 
   
   // addToCart
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
+
     setCartItem((prev) => ({
       ...prev,
       [itemId]: (prev[itemId] || 0) + 1,
     }));
+
+    if(token){
+      await axios.post(URL+"/api/cart/add",{itemId},{headers:{token}})
+    }
+    
   };
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     if (cartItem[itemId] > 1) {
       setCartItem((prev) => ({
         ...prev,
-        [itemId]: prev[itemId] - 1,
+       [itemId]:prev[itemId] - 1
       }));
+    
     } else {
       const updatedCart = { ...cartItem };
       delete updatedCart[itemId];
       setCartItem(updatedCart);
+   
     }
+      // I'm in computer in this part you can modify this or remove 
+      if(token){
+        await axios.post(URL+"/api/cart/remove",{itemId},{headers:{token}})
+      }
   };
 
   const getTotalFromAmount = () => {
