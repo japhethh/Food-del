@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import axios from 'axios'
 const Placeholder = () => {
   const navigate = useNavigate();
   const { getTotalFromAmount, token, food_list, cartItem, URL } =
@@ -40,11 +41,19 @@ const Placeholder = () => {
       items:orderItems,
       amount:getTotalFromAmount() + 2
     }
-    
+    try {
     let response = await axios.post(URL+"/api/order/place",orderData,{headers:{token}});
     if(response.data.success){
-      
+      const {session_url} = response.data;
+      window.location.replace(session_url)
+    }else{
+      alert("Error")
+
     }
+  } catch (error) {
+      console.log(error);
+      alert("An error occurred. Please try again.");
+  }
   };
 
   return (
@@ -153,7 +162,7 @@ const Placeholder = () => {
             <hr />
             <div className="cart-total-details flex py-2 justify-between items-center text-gray-700">
               <b>Total</b>
-              <b>{0}</b>
+              <b>{getTotalFromAmount() + 2}</b>
             </div>
             <hr className="my-5 " />
             <button
